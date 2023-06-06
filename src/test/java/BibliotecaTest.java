@@ -2,11 +2,10 @@
 import BibliotecaEmi.Biblioteca;
 import BibliotecaEmi.Libro;
 import org.junit.jupiter.api.Test;
-import BibliotecaEmi.Biblioteca;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class bibliotecatest {
+public class BibliotecaTest {
       @Test
       void agregarlibrotest(){
 
