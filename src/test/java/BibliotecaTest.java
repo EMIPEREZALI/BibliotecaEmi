@@ -9,7 +9,7 @@ public class BibliotecaTest {
       @Test
       void agregarlibrotest(){
 
-      //arrange
+      //arrange prueba
 
       Biblioteca biblioteca = new Biblioteca("Argentina");
 
