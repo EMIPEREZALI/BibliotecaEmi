@@ -16,7 +16,6 @@ public class BibliotecaTest {
       Libro ElPoderDelAhora = new Libro("0001","El Poder Del Ahora");
       Libro LosCuatroAcuerdos = new Libro( "0002", "Los Cuaotro Acuerdos");
 
-
       //act
       // cantidad de libros que quiero pasar con su nombre
       biblioteca.insertarLibro(ElPoderDelAhora);
