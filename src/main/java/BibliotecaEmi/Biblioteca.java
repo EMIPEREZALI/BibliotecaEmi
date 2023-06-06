@@ -18,7 +18,7 @@ public class Biblioteca {
 
 
 
-    // insertar los dos libros
+    // insertar los dos libros emi
     public void insertarLibro(Libro libro) {
         // verifica que no este el libro cargado de vuelve 1 0 1 el contain mira el array
         if (!this.libros.contains(libro)) {
