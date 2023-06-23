@@ -1,17 +1,19 @@
-package BibliotecaEmi;
-import com.sun.source.tree.BreakTree;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
 
-import java.util.ArrayList;
+package BibliotecaEmi;
+
 import java.util.Objects;
 
 public class Socio {
+ private Documento documento;
+ private String nombre;
+ private String apellido;
+ private String direccion;
 
- private  Documento documento;
- private  String nombre;
- private  String apellido;
- private  String direccion;
-
- public Socio(Documento documento, String nombre, String apellido, String direccion ) {
+ public Socio(Documento documento, String nombre, String apellido, String direccion) {
   this.documento = documento;
   this.nombre = nombre;
   this.apellido = apellido;
@@ -22,21 +24,18 @@ public class Socio {
   return this.documento;
  }
 
- @Override
  public boolean equals(Object o) {
-  if (this == o) return true;
-  if (o == null || getClass() != o.getClass()) return false;
-  Socio socio = (Socio) o;
-  return documento.equals(socio.documento);
+  if (this == o) {
+   return true;
+  } else if (o != null && this.getClass() == o.getClass()) {
+   Socio socio = (Socio)o;
+   return this.documento.equals(socio.documento);
+  } else {
+   return false;
+  }
  }
 
- @Override
  public int hashCode() {
-  return Objects.hash(documento);
+  return Objects.hash(new Object[]{this.documento});
  }
-
-
- }
-
-
-
+}

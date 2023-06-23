@@ -1,8 +1,8 @@
+
+
 package BibliotecaEmi;
 
-import java.util.Objects;
 public class Documento {
-
     private String tipo;
     private String numero;
 

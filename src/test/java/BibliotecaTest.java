@@ -1,81 +1,81 @@
 
-import BibliotecaEmi.Biblioteca;
-import BibliotecaEmi.Libro;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import BibliotecaEmi.Biblioteca;
+import BibliotecaEmi.Documento;
+import BibliotecaEmi.Libro;
+import BibliotecaEmi.Socio;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class BibliotecaTest {
+      private Biblioteca biblioteca;
+
+      public BibliotecaTest() {
+      }
+
       @Test
-      void agregarlibrotest(){
-
-      //arrange prueba
-
-      Biblioteca biblioteca = new Biblioteca("Argentina");
-
-      Libro ElPoderDelAhora = new Libro("0001","El Poder Del Ahora");
-      Libro LosCuatroAcuerdos = new Libro( "0002", "Los Cuaotro Acuerdos");
-
-      //act
-      // cantidad de libros que quiero pasar con su nombre
-      biblioteca.insertarLibro(ElPoderDelAhora);
+      void agregarlibrotest() {
+            Biblioteca biblioteca = new Biblioteca("Argentina");
+            Libro ElPoderDelAhora = new Libro("0001", "El Poder Del Ahora");
+            Libro LosCuatroAcuerdos = new Libro("0002", "Los Cuaotro Acuerdos");
+            biblioteca.insertarLibro(ElPoderDelAhora);
             biblioteca.insertarLibro(ElPoderDelAhora);
             biblioteca.insertarLibro(LosCuatroAcuerdos);
-       // pruebo cuantos inserto
-      //assert
-      assertEquals(2,biblioteca.getLibros().size());
-
-
-
+            Assertions.assertEquals(2, biblioteca.getLibros().size());
       }
 
       @Test
-      void agregarLibrosDuplicadosShouldFailTest(){
-
-            //arrange
-
+      void agregarLibrosDuplicadosShouldFailTest() {
             Biblioteca biblioteca = new Biblioteca("Argentina");
-
-            Libro elPoderDelAhora = new Libro("0001","El Poder Del Ahora") ;
-
-
-            //act
-
+            Libro elPoderDelAhora = new Libro("0001", "El Poder Del Ahora");
             biblioteca.insertarLibro(elPoderDelAhora);
             biblioteca.insertarLibro(elPoderDelAhora);
-
-            //assert
-            assertEquals(1, biblioteca.getLibros().size());
-
+            Assertions.assertEquals(1, biblioteca.getLibros().size());
       }
+
       @Test
-      void BuscarLibros(){
-            //arrange
+      void BuscarLibros() {
             Biblioteca biblioteca = new Biblioteca("Argentina");
-
-            Libro ElPoderDelAhora = new Libro("0001","El Poder Del Ahora","Eckhart Tolle",
-                    "psicología");
-            Libro LosCuatroAcuerdos = new Libro( "0002", "Los Cuaotro Acuerdos","Miguel Ruiz",
-                    "psicologia");
-
-            //act
+            Libro ElPoderDelAhora = new Libro("0001", "El Poder Del Ahora", "Eckhart Tolle", "psicología");
+            Libro LosCuatroAcuerdos = new Libro("0002", "Los Cuaotro Acuerdos", "Miguel Ruiz", "psicologia");
             biblioteca.insertarLibro(ElPoderDelAhora);
             biblioteca.insertarLibro(LosCuatroAcuerdos);
             Libro libroBuscar = biblioteca.buscarIsbn("0001");
-
-            //assert
-            assertNotNull(libroBuscar);
-            assertEquals("0002", libroBuscar.getCodIsbn());
-
-
-
-
-
-
-
-
-
+            Assertions.assertNotNull(libroBuscar);
+            Assertions.assertEquals("0002", libroBuscar.getCodIsbn());
       }
 
+      @Test
+      void BuscarLibrosError() {
+            Biblioteca biblioteca = new Biblioteca("Argentina");
+            Libro ElPoderDelAhora = new Libro("0001", "El Poder Del Ahora", "Eckhart Tolle", "psicología");
+            Libro LosCuatroAcuerdos = new Libro("0002", "Los Cuaotro Acuerdos", "Miguel Ruiz", "psicologia");
+            biblioteca.insertarLibro(ElPoderDelAhora);
+            biblioteca.insertarLibro(LosCuatroAcuerdos);
+            Libro libroBuscar = biblioteca.buscarIsbn("0002");
+            Assertions.assertNotNull(libroBuscar);
+            Assertions.assertEquals("0001", libroBuscar.getCodIsbn());
       }
+
+      @Test
+      void BuscarLibrosCat() {
+            Biblioteca biblioteca = new Biblioteca("Argentina");
+            Libro ElPoderDelAhora = new Libro("0001", "El Poder Del Ahora", "Eckhart Tolle", "psicología");
+            Libro LosCuatroAcuerdos = new Libro("0002", "Los Cuaotro Acuerdos", "Miguel Ruiz", "psicologia");
+            biblioteca.insertarLibro(ElPoderDelAhora);
+            biblioteca.insertarLibro(LosCuatroAcuerdos);
+            Libro libroBuscarCat = biblioteca.buscarCat("psicologia");
+            Assertions.assertEquals("psicologia", libroBuscarCat.getCategoria());
+            System.out.println(libroBuscarCat.getCategoria());
+      }
+
+      @Test
+      Biblioteca IngresarSocio(Socio socio) {
+            Biblioteca biblioteca = new Biblioteca("Argentina");
+            new Socio(new Documento("DNI", "34504576"), "Emilinoa", "Perez", "pueyrredon 3350 ");
+            this.biblioteca = this.IngresarSocio(socio);
+            Socio added = this.biblioteca.IngresasrsocioPorDocumento(new Documento("DNI", "34504575"));
+            Assertions.assertEquals(socio, added);
+            return biblioteca;
+      }
+}
