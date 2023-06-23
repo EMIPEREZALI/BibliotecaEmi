@@ -7,6 +7,8 @@ import BibliotecaEmi.Socio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class BibliotecaTest {
       private Biblioteca biblioteca;
 
@@ -60,13 +62,18 @@ public class BibliotecaTest {
       @Test
       void BuscarLibrosCat() {
             Biblioteca biblioteca = new Biblioteca("Argentina");
-            Libro ElPoderDelAhora = new Libro("0001", "El Poder Del Ahora", "Eckhart Tolle", "psicología");
+            Libro ElPoderDelAhora = new Libro("0001", "El Poder Del Ahora", "Eckhart Tolle", "psicologia");
             Libro LosCuatroAcuerdos = new Libro("0002", "Los Cuaotro Acuerdos", "Miguel Ruiz", "psicologia");
             biblioteca.insertarLibro(ElPoderDelAhora);
             biblioteca.insertarLibro(LosCuatroAcuerdos);
-            Libro libroBuscarCat = biblioteca.buscarCat("psicologia");
-            Assertions.assertEquals("psicologia", libroBuscarCat.getCategoria());
-            System.out.println(libroBuscarCat.getCategoria());
+            List<Libro> listalibros = biblioteca.buscarCat("psicologia");
+             Assertions.assertEquals(2,listalibros.size());
+             Assertions.assertEquals("0001",listalibros.get(0).getCodIsbn());
+             Assertions.assertEquals("0002",listalibros.get(1).getCodIsbn());
+            listalibros.forEach(libro -> {
+                  System.out.println("libro.getAutor() = " + libro.getAutor());
+            });
+
       }
 
       @Test

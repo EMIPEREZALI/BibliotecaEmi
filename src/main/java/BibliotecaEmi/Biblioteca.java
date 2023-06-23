@@ -45,19 +45,15 @@ public class Biblioteca {
         return a;
     }
 
-    public Libro buscarCat(String categoria) {
-        Iterator var2 = this.libros.iterator();
-
-        Libro a;
-        do {
-            if (!var2.hasNext()) {
-                return null;
+    public List<Libro> buscarCat(String categoria) {
+        List<Libro> listaLibros = new ArrayList<>();
+        this.libros.forEach(libro -> {
+            if (libro.getCategoria().equals(categoria)) {
+                listaLibros.add(libro);
             }
 
-            a = (Libro)var2.next();
-        } while(!a.getCategoria().equals(categoria));
-
-        return a;
+        });
+      return listaLibros;
     }
 
     public void addStudent(Socio socio) {
